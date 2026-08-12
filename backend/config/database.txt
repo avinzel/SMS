@@ -1,0 +1,17 @@
+create database studentBack; 
+use studentBack;
+
+create table students(
+	student_id int auto_increment primary key,
+	student_name varchar(50) not null,
+    age int(10) not null,
+    course varchar(255) not null
+);
+
+INSERT INTO students (student_name, age, course)
+VALUES
+    ('Alice Johnson', 20, 'Computer Science'),
+    ('Brian Smith', 22, 'Business Administration'),
+    ('Catherine Lee', 19, 'Mechanical Engineering'),
+    ('David Brown', 21, 'Information Technology'),
+    ('Emma Wilson', 23, 'Civil Engineering');
