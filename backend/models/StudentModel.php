@@ -34,7 +34,17 @@
             }else{
                 return ["success"=> false,"message"=>"Insert Failed"];
             }
+        }
 
+        public function  deleteStudent($student_id){
+            $query = "delete from students where student_id = ?";             
+            $stmt = $this->conn->prepare($query); 
+            $stmt->bind_param("i", $student_id);
+            if($stmt->execute()){
+                return true;
+            }else {
+                return false; 
+            }
 
         }
     }

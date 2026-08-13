@@ -32,6 +32,8 @@
                 $studentController->handleGetStudents();
             }else if($method === "POST"){
                 $studentController->handleAddStudent();
+            }else if($method === "DELETE"){
+                $studentController->handleDeleteStudent();
             }
             break;
         

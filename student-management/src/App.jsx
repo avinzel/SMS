@@ -30,7 +30,7 @@ function App() {
 
   return (
     <>
-        <StudentTable setStudents = {setStudents} students = {students}></StudentTable>
+        <StudentTable getStudents = {getStudents} students = {students}></StudentTable>
         <StudentForm getStudents = {getStudents}/>
     </>
   )
