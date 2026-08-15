@@ -1,4 +1,4 @@
-export function StudentRow({ getStudents, student }) {
+export function StudentRow({ getStudents, student, getStudent }) {
 
     async function deleteStudent(student_id){
         const response = await fetch("http://localhost/websites/3rdYear/Re-React/SMS/backend/api/api.php?action=student",
@@ -28,7 +28,7 @@ export function StudentRow({ getStudents, student }) {
                     <button className="delete" onClick={()=> deleteStudent(student["student_id"])}>
                         Delete
                     </button>
-                    <button className="update">
+                    <button className="update" onClick={() => getStudent(student["student_id"])}>
                         Update
                     </button>
                 </div>

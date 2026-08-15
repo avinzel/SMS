@@ -1,7 +1,7 @@
 
 import { StudentRow } from "./StudentRow"
 import "./Table.css";
-export function StudentTable({ getStudents, students }) {
+export function StudentTable({ getStudents, students, getStudent}) {
 
     return (
         <>
@@ -19,7 +19,7 @@ export function StudentTable({ getStudents, students }) {
                 <tbody>
                     {students.map(student => {
                         return (
-                            <StudentRow key={student["student_id"]} getStudents={getStudents} student={student} />
+                            <StudentRow key={student["student_id"]} getStudents={getStudents} student={student} getStudent = {getStudent}/>
                         )
                     })}
                 </tbody>

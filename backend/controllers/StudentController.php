@@ -45,5 +45,41 @@
                 echo json_encode(["success" => false, "message" =>  "Deletion Failed server error"]); 
             }
         }
+        public function handleGetStudent($student_id){
+            if (is_int($student_id) ) {
+                http_response_code(400);
+                echo json_encode(["success" => false ,"message" => "bad request"]);
+            }
+
+            $response = $this->model->getStudent($student_id);
+
+            if (!$response) {
+                http_response_code(500);
+               echo  json_encode(["success" => false, "message"=> "failed to find student" ]);
+            }else{
+                http_response_code(200);
+                echo json_encode(["success"=> true, "message" => "student found", "student" => $response]);
+            }
+        }
+
+        public function handleUpdateStudent(){
+            $student = json_decode(file_get_contents("php://input"),true);
+
+            if (!$student["student_id"]|| !$student["student_name"] || !$student["age"] || !$student["course"]) {
+                http_response_code(400); // bad request
+                echo json_encode(["success"=>false, "message"=>"some data are missing for update"]);
+                return;
+            }
+            
+            $response = $this->model->updateStudent( $student);
+
+            if (!$response) {
+               http_response_code(500); //server failed
+               echo  json_encode(["success" => false, "message"=> "student update failed" ]);
+            }else{
+                http_response_code(200); //OK
+                echo json_encode(["success" => true , "message"=> "student update successfully"]); 
+            }   
+        }
     }
 ?>

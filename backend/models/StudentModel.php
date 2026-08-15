@@ -47,5 +47,26 @@
             }
 
         }
+        public function getStudent($student_id){
+            $query = "select * from students where student_id = ?";
+
+            $stmt = $this->conn->prepare($query); 
+            $stmt->bind_param("i",$student_id );
+
+            if ($stmt->execute()) {
+                $result = $stmt->get_result()->fetch_assoc();
+                return $result;
+            }else{
+                return false;
+            }
+        }
+        public function updateStudent($student){
+           $query = "update students set student_name = ?, age = ?, course = ?  where student_id = ?"; 
+           $stmt = $this->conn->prepare($query);
+
+           $stmt->bind_param("sisi",$student["student_name"], $student["age"], $student["course"], $student["student_id"]);
+
+           return $stmt->execute();
+        }
     }
 ?>
