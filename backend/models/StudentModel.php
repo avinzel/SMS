@@ -30,7 +30,7 @@
             $success = $stmt->execute();
 
             if ($success) {
-                return ["success"=> true, "student_id"=> $stmt->insert_id];
+                return ["success"=> true, "message"=>"Added Succesfully!","student_id"=> $stmt->insert_id];
             }else{
                 return ["success"=> false,"message"=>"Insert Failed"];
             }

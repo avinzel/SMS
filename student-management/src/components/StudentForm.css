@@ -1,3 +1,13 @@
+.form-container{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(10, 9, 9, 0.262);
+  z-index: 2;
+}
 form {
   max-width: 480px;
   box-sizing: border-box;
@@ -6,6 +16,13 @@ form {
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 6px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  display: block;
+  z-index: 1;
 }
 form h2 {
   margin-top: 0;
