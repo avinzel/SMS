@@ -5,9 +5,12 @@
             $this->conn = $conn; 
         }
 
-        public function getStudents(){
-            $query = "Select * from students";
+        public function getStudents($student_name, $course){
+            $inName = empty($student_name)? "%" : $student_name."%";
+             $inCourse = empty($course) ? "%" : $course."%";
+            $query = "Select * from students where student_name like ? and course like ? ";
             $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("ss",$inName,$inCourse );
             
             $stmt->execute(); 
 

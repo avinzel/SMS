@@ -6,8 +6,8 @@
             $this->model = $model; 
         }
 
-        public function handleGetStudents(){
-            $students = $this->model->getStudents();   
+        public function handleGetStudents($student_name, $course){
+            $students = $this->model->getStudents($student_name, $course);   
             echo json_encode($students); 
         }
         public function handleAddStudent(){

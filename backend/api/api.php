@@ -13,15 +13,18 @@
     require_once "../config/database.php";
     require_once "../models/StudentModel.php";
     require_once "../controllers/StudentController.php";
-
+    require_once "../models/AccountModel.php";
+    require_once "../controllers/AccountController.php";
     $database = new Database(); 
     $conn = $database->getConnection();
     
     
     $studentModel = new StudentModel($conn);
     $studentController = new StudentController($studentModel); 
-
-
+    $accountModel = new AccountModel($conn); 
+    $accountController = new AccountController($accountModel);
+    
+    
     $method = $_SERVER["REQUEST_METHOD"];
     $action = $_GET["action"] ?? "";
     $student_id = $_GET["student_id"] ?? "";
@@ -32,7 +35,7 @@
                 if ($student_id) {
                     $studentController->handleGetStudent($student_id);
                 }else{
-                    $studentController->handleGetStudents();
+                    $studentController->handleGetStudents($_GET["student_name"] , $_GET["course"]);
                 }
             }else if($method === "POST"){
                 $studentController->handleAddStudent();
@@ -42,7 +45,11 @@
                 $studentController->handleUpdateStudent();
             }
             break;
-        
+        case "signup": 
+            if ($method ==="POST") {
+                $accountController->handleSignUp();
+            }
+        break;
         default:
             http_response_code(404); //not found
             echo json_encode([ "success"=> false,"message" => "Endpoint not found."]);

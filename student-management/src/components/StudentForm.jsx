@@ -1,5 +1,5 @@
-import "./StudentForm.css"
-export function StudentForm({ formModal,setFormModal, getStudents, isAdd, student, setAddStatus, setUpdateStudent }) {
+import "../styles/StudentForm.css"
+export function StudentForm({ formModal, setFormModal, getStudents, isAdd, student, setAddStatus, setUpdateStudent }) {
     async function submitStudentForm(e) {
         e.preventDefault();
         const form = e.currentTarget;
@@ -56,58 +56,65 @@ export function StudentForm({ formModal,setFormModal, getStudents, isAdd, studen
 
     return (
         <>
-            <div className="form-container" style={{ display: formModal? "block" : "none"}} onClick={() =>{
-                setFormModal(false)
+            <div className="student-form-container" style={{ display: formModal ? "block" : "none" }} onClick={() => {
+                setFormModal(false);
+                setAddStatus(false);
             }}>
-                <form onSubmit={(e) => { submitStudentForm(e) }} onClick={(e)=> {e.stopPropagation()} }>
+                <form className="student-form" onSubmit={(e) => { submitStudentForm(e) }} onClick={(e) => { e.stopPropagation() }}>
                     <h2>Student Form</h2>
-                    <h3>Personal Information </h3>
-                    <label htmlFor="student_name">Full Name: </label>
-                    <input type="text" name="student_name" id="student_name" defaultValue={isAdd ? "" : student["student_name"]} /> <br /><br />
+                    <h3>Personal Information</h3>
 
-                    <label htmlFor="age">Age: </label>
-                    <input type="number" name="age" id="age" min={1} defaultValue={isAdd ? "" : student["age"]} /> <br /> <br />
+                    <div className="student-form-row">
+                        <label htmlFor="student_name">Full Name: </label>
+                        <input type="text" name="student_name" id="student_name" defaultValue={isAdd ? "" : student["student_name"]} />
+                    </div>
 
-                    <h3>Course </h3>
+                    <div className="student-form-row">
+                        <label htmlFor="age">Age: </label>
+                        <input type="number" name="age" id="age" min={1} defaultValue={isAdd ? "" : student["age"]} />
+                    </div>
 
-                    <input type="radio" name="course" value={"Computer Science"}
-                        defaultChecked={
-                            isAdd ? false : student["course"] == "Computer Science" ? true : false
-                        } />
-                    <label htmlFor="" >Computer Science</label>
+                    <h3>Course</h3>
 
-                    <input type="radio" name="course" value={"Business Administration"}
-                        defaultChecked={
-                            isAdd ? false : student["course"] == "Business Administration" ? true : false
-                        } />
-                    <label htmlFor="">Business Administration</label>
+                    <div className="student-radio-group">
+                        <label className="student-radio-option">
+                            <input type="radio" name="course" value="Computer Science"
+                                defaultChecked={!isAdd && student["course"] === "Computer Science"} />
+                            Computer Science
+                        </label>
 
-                    <input type="radio" name="course" value={"Mechanical Engineering"}
-                        defaultChecked={
-                            isAdd ? false : student["course"] == "Mechanical Engineering" ? true : false
-                        } />
-                    <label htmlFor="">Mechanical Engineering</label>
+                        <label className="student-radio-option">
+                            <input type="radio" name="course" value="Business Administration"
+                                defaultChecked={!isAdd && student["course"] === "Business Administration"} />
+                            Business Administration
+                        </label>
 
-                    <input type="radio" name="course" value={"Information Technology"}
-                        defaultChecked={
-                            isAdd ? false : student["course"] == "Information Technology" ? true : false
-                        } />
-                    <label htmlFor="">Information Technology</label>
+                        <label className="student-radio-option">
+                            <input type="radio" name="course" value="Mechanical Engineering"
+                                defaultChecked={!isAdd && student["course"] === "Mechanical Engineering"} />
+                            Mechanical Engineering
+                        </label>
 
-                    <input type="radio" name="course" value={"Civil Engineering"}
-                        defaultChecked={
-                            isAdd ? false : student["course"] == "Civil Engineering" ? true : false
-                        } />
-                    <label htmlFor="">Civil Engineering</label>
-                    <br /> <br />
-                    <button className={isAdd ? "add-button" : "upd-button"}>
+                        <label className="student-radio-option">
+                            <input type="radio" name="course" value="Information Technology"
+                                defaultChecked={!isAdd && student["course"] === "Information Technology"} />
+                            Information Technology
+                        </label>
+
+                        <label className="student-radio-option">
+                            <input type="radio" name="course" value="Civil Engineering"
+                                defaultChecked={!isAdd && student["course"] === "Civil Engineering"} />
+                            Civil Engineering
+                        </label>
+                    </div>
+
+                    <button className={isAdd ? "student-add-button" : "student-upd-button"}>
                         {isAdd ? "Submit" : "Update"}
                     </button>
-
                 </form>
             </div>
-
         </>
+
     )
 
 }

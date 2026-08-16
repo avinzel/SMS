@@ -1,6 +1,6 @@
 
 import { StudentRow } from "./StudentRow"
-import "./Table.css";
+import "../styles/Table.css";
 export function StudentTable({ getStudents, students, getStudent}) {
 
     return (

@@ -1,4 +1,4 @@
-import "./AddButton.css"
+import "../styles/AddButton.css"
 export function AddButton({setFormModal, setUpdateStudent,  setAddStatus }){
     return(
         <>
