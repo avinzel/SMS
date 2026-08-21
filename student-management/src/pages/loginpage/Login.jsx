@@ -1,6 +1,30 @@
-import { Link } from "react-router-dom"
+import { Link,useNavigate } from "react-router-dom"
 import "../../styles/Login.css"
-export function Login() {
+export function Login( {setCurrentUser}) {
+    const navigate = useNavigate();
+    async function submitLogin(e){
+        e.preventDefault();
+        const formEl = e.currentTarget;
+        const form = new FormData(formEl);
+        const account = Object.fromEntries(form.entries()) ;
+        
+        const response = await fetch("http://localhost/websites/3rdYear/Re-React/SMS/backend/api/api.php?action=login", {
+            method: "POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(account),
+            credentials: "include"
+        }).then(response => response.json())
+
+        if (response["success"]) {
+            console.log(response["account"]);
+            alert(response["message"]);
+            setCurrentUser(response["account"])
+            formEl.reset();
+            navigate("/students");
+        }else{
+            alert(response["message"]);
+        }
+    }  
 
     return (
         <>

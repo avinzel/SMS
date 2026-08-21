@@ -28,4 +28,22 @@ class AccountModel
             }
         }
     }
+
+    public function findAccount($user_name) {
+        $query = "select account_id, user_name, password from accounts where user_name = ?";
+
+        $stmt = $this->conn->prepare($query); 
+        $stmt->bind_param("s", $user_name);
+
+        if (!$stmt->execute()) {
+            return false; 
+        }
+
+        $account = $stmt->get_result()->fetch_assoc();
+
+        if (empty($account)) {
+            return false;
+        }
+        return $account;
+    }
 }

@@ -5,7 +5,8 @@ export function StudentRow({ getStudents, student, getStudent }) {
             {
                 method: "DELETE",
                 headers: {"Content-Type" : "application/json"},
-                body: JSON.stringify(student_id)
+                body: JSON.stringify(student_id),
+                credentials:"include"
             }
         ).then(response => response.json())
         if (response["success"]) {

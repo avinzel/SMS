@@ -15,7 +15,8 @@ export function StudentForm({ formModal, setFormModal, getStudents, isAdd, stude
             response = await fetch("http://localhost/websites/3rdYear/Re-React/SMS/backend/api/api.php?action=student", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
+                credentials:"include"
             }).then(response =>
                 response.json())
 
@@ -34,7 +35,8 @@ export function StudentForm({ formModal, setFormModal, getStudents, isAdd, stude
             response = await fetch("http://localhost/websites/3rdYear/Re-React/SMS/backend/api/api.php?action=student", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
+                credentials:"include"
             }).then(response => response.json())
 
             if (response["success"]) {
